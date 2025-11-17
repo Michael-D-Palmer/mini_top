@@ -1,14 +1,18 @@
-CC=gcc
-CFLAGS=-Wall -Wextra -g
+CC = gcc
+CFLAGS = -Wall -Wextra -g -pthread
+SRC = src/main.c src/proc_parser.c src/cpu_sampler.c
+OBJ = $(SRC:.c=.o)
+TARGET = mini_top
 
-SRC=src/main.c src/proc_parser.c
-OBJ=$(SRC:.c=.o)
-OUT=mini_top
+.PHONY: all clean
 
-all: $(OUT)
+all: $(TARGET)
 
-$(OUT): $(OBJ)
-	$(CC) $(CFLAGS) -o $(OUT) $(OBJ)
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^ -lncurses
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(OUT)
+	rm -f $(OBJ) $(TARGET)
