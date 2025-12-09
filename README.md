@@ -75,7 +75,7 @@ Or edit the Makefile to add the include/lib paths for ncurses on macOS.
 ./mini_top
 ```
 ## Controls:
-`q` — quit and cleanly stop background threads.
+`q` — quit and cleanly stop background threads.<br>
 `Ctrl+C` — sends SIGINT; the program attempts to exit cleanly, but prefer q to ensure graceful thread join and ncurses cleanup.
 
 ## Behavior & Implementation notes
